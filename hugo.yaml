@@ -1,0 +1,15 @@
+baseURL: https://example.org/
+languageCode: en-US
+menus:
+  main:
+  - name: Home
+    pageRef: /
+    weight: 10
+  - name: Posts
+    pageRef: /posts
+    weight: 20
+module:
+  hugoVersion:
+    extended: true
+    min: 0.152.2
+title: Forge CI Documentation Site
