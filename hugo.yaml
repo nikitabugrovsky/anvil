@@ -1,15 +1,28 @@
 baseURL: https://example.org/
 languageCode: en-US
+title: Forge CI Documentation
+theme: anvil
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: tango
+    lineNos: true
+    lineNumbersInTable: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+    ordered: false
+
 menus:
   main:
-  - name: Home
-    pageRef: /
-    weight: 10
-  - name: Posts
-    pageRef: /posts
-    weight: 20
+    - name: ""
+      pageRef: ""
+      weight: 10
+
 module:
   hugoVersion:
     extended: true
-    min: 0.152.2
-title: Forge CI Documentation Site
+    min: 0.146.0
