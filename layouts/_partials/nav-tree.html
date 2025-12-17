@@ -7,7 +7,7 @@
   {{ $scratch.Set "level" .level }}
   {{ range $contents }}
     {{ if eq .Parent ($scratch.Get "current") }}
-      <li class="nav-item{{ if eq . ($scratch.Get "context") }} is-current-page{{ end }}" data-depth="{{ $scratch.Get "level" }}">
+      <li class="nav-item{{ if eq . ($scratch.Get "context") }} is-current-page{{ end }}{{ if .IsSection }} is-active{{ end }}" data-depth="{{ $scratch.Get "level" }}">
         {{ if .IsSection }}
           <button class="nav-item-toggle"></button>
         {{ end }}
