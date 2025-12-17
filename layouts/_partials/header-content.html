@@ -1,7 +1,10 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title | markdownify }}</a>
+      <a class="navbar-item" href="{{ .Site.Home.RelPermalink }}" style="display: flex; align-items: center; gap: 0.75rem;">
+        <img src="{{ "img/forge.png" | relURL }}" alt="Forge CI Logo" style="height: 3.75rem; width: auto;">
+        <span>{{ .Site.Title | markdownify }}</span>
+      </a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
