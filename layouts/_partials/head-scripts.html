@@ -1,2 +1,3 @@
 {{/* Add additional scripts here */}}
-<script src="{{ (resources.Get "js/00-theme-switcher.js").RelPermalink }}"></script>
+{{ $theme_switcher := resources.Get "js/00-theme-switcher.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $theme_switcher.RelPermalink }}" {{ $theme_switcher.Data.Integrity | printf "integrity=%q" | safeHTMLAttr }}></script>
