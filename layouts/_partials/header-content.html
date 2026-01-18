@@ -27,6 +27,10 @@
             <a class="navbar-item" href="{{ .URL }}" title="{{ .Title | markdownify }}">{{ .Name }}</a>
           {{ end }}
         {{ end }}
+        <button class="theme-toggle navbar-item" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle theme">
+          <img class="theme-icon theme-icon-sun" src="{{ "img/sun.svg" | relURL }}" alt="Light mode">
+          <img class="theme-icon theme-icon-moon" src="{{ "img/moon.svg" | relURL }}" alt="Dark mode">
+        </button>
       </div>
     </div>
   </nav>

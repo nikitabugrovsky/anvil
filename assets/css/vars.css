@@ -140,3 +140,192 @@
   --z-index-page-version-menu: 3;
   --z-index-navbar: 4;
 }
+
+/* Dark mode color overrides */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* colors */
+    --color-white: #1a1a1a;
+    --color-smoke-10: #1f1f1f;
+    --color-smoke-30: #242424;
+    --color-smoke-50: #2a2a2a;
+    --color-smoke-70: #303030;
+    --color-smoke-90: #3a3a3a;
+    --color-gray-10: #4a4a4a;
+    --color-gray-30: #a0a0a0;
+    --color-gray-50: #b0b0b0;
+    --color-gray-70: #c0c0c0;
+    --color-jet-20: #d0d0d0;
+    --color-jet-30: #d5d5d5;
+    --color-jet-50: #e0e0e0;
+    --color-jet-70: #e8e8e8;
+    --color-jet-80: #eeeeee;
+    --color-black: #ffffff;
+
+    /* base */
+    --body-background: #1a1a1a;
+    --body-font-color: #e8e8e8;
+    --panel-background: #242424;
+    --panel-border-color: #3a3a3a;
+    --scrollbar-thumb-color: #4a4a4a;
+
+    /* navbar */
+    --navbar-background: #0f0f0f;
+    --navbar-font-color: #e8e8e8;
+    --navbar_hover-background: #1a1a1a;
+    --navbar-button-background: #242424;
+    --navbar-button-border-color: #3a3a3a;
+    --navbar-button-font-color: #e8e8e8;
+    --navbar-menu-border-color: #3a3a3a;
+    --navbar-menu-background: #1a1a1a;
+    --navbar-menu-font-color: #e8e8e8;
+    --navbar-menu_hover-background: #2a2a2a;
+
+    /* nav */
+    --nav-background: #242424;
+    --nav-border-color: #4a4a4a;
+    --nav-heading-font-color: #d5d5d5;
+    --nav-muted-color: #a0a0a0;
+    --nav-panel-divider-color: #3a3a3a;
+    --nav-secondary-background: #2a2a2a;
+
+    /* toolbar */
+    --toolbar-background: #242424;
+    --toolbar-border-color: #3a3a3a;
+    --toolbar-font-color: #c0c0c0;
+    --toolbar-muted-color: #a0a0a0;
+    --page-version-menu-background: #2a2a2a;
+    --page-version-missing-font-color: #808080;
+
+    /* doc */
+    --doc-font-color: #e0e0e0;
+    --heading-font-color: #eeeeee;
+    --link-font-color: #6db3f2;
+    --link_hover-font-color: #8cc5f5;
+    --abstract-background: #2a2a2a;
+    --abstract-font-color: #d0d0d0;
+    --abstract-border-color: #3a3a3a;
+    --admonition-background: #242424;
+    --caption-font-color: #c0c0c0;
+    --code-background: #242424;
+    --code-font-color: #e8e8e8;
+    --example-background: #1a1a1a;
+    --example-border-color: #4a4a4a;
+    --kbd-background: #242424;
+    --kbd-border-color: #4a4a4a;
+    --pre-background: #242424;
+    --pre-border-color: #3a3a3a;
+    --pre-annotation-font-color: #b0b0b0;
+    --quote-background: #242424;
+    --quote-border-color: #4a4a4a;
+    --quote-font-color: #c0c0c0;
+    --quote-attribution-font-color: #a0a0a0;
+    --sidebar-background: #2a2a2a;
+    --table-border-color: #3a3a3a;
+    --table-stripe-background: #242424;
+    --table-footer-background: linear-gradient(to bottom, #2a2a2a 0%, #1a1a1a 100%);
+
+    /* toc */
+    --toc-font-color: #a0a0a0;
+    --toc-heading-font-color: #e0e0e0;
+    --toc-border-color: #3a3a3a;
+
+    /* footer */
+    --footer-background: #1f1f1f;
+    --footer-font-color: #c0c0c0;
+    --footer-link-font-color: #e8e8e8;
+  }
+}
+
+[data-theme="dark"] {
+  /* colors */
+  --color-white: #1a1a1a;
+  --color-smoke-10: #1f1f1f;
+  --color-smoke-30: #242424;
+  --color-smoke-50: #2a2a2a;
+  --color-smoke-70: #303030;
+  --color-smoke-90: #3a3a3a;
+  --color-gray-10: #4a4a4a;
+  --color-gray-30: #a0a0a0;
+  --color-gray-50: #b0b0b0;
+  --color-gray-70: #c0c0c0;
+  --color-jet-20: #d0d0d0;
+  --color-jet-30: #d5d5d5;
+  --color-jet-50: #e0e0e0;
+  --color-jet-70: #e8e8e8;
+  --color-jet-80: #eeeeee;
+  --color-black: #ffffff;
+
+  /* base */
+  --body-background: #1a1a1a;
+  --body-font-color: #e8e8e8;
+  --panel-background: #242424;
+  --panel-border-color: #3a3a3a;
+  --scrollbar-thumb-color: #4a4a4a;
+
+  /* navbar */
+  --navbar-background: #0f0f0f;
+  --navbar-font-color: #e8e8e8;
+  --navbar_hover-background: #1a1a1a;
+  --navbar-button-background: #242424;
+  --navbar-button-border-color: #3a3a3a;
+  --navbar-button-font-color: #e8e8e8;
+  --navbar-menu-border-color: #3a3a3a;
+  --navbar-menu-background: #1a1a1a;
+  --navbar-menu-font-color: #e8e8e8;
+  --navbar-menu_hover-background: #2a2a2a;
+
+  /* nav */
+  --nav-background: #242424;
+  --nav-border-color: #4a4a4a;
+  --nav-heading-font-color: #d5d5d5;
+  --nav-muted-color: #a0a0a0;
+  --nav-panel-divider-color: #3a3a3a;
+  --nav-secondary-background: #2a2a2a;
+
+  /* toolbar */
+  --toolbar-background: #242424;
+  --toolbar-border-color: #3a3a3a;
+  --toolbar-font-color: #c0c0c0;
+  --toolbar-muted-color: #a0a0a0;
+  --page-version-menu-background: #2a2a2a;
+  --page-version-missing-font-color: #808080;
+
+  /* doc */
+  --doc-font-color: #e0e0e0;
+  --heading-font-color: #eeeeee;
+  --link-font-color: #6db3f2;
+  --link_hover-font-color: #8cc5f5;
+  --abstract-background: #2a2a2a;
+  --abstract-font-color: #d0d0d0;
+  --abstract-border-color: #3a3a3a;
+  --admonition-background: #242424;
+  --caption-font-color: #c0c0c0;
+  --code-background: #242424;
+  --code-font-color: #e8e8e8;
+  --example-background: #1a1a1a;
+  --example-border-color: #4a4a4a;
+  --kbd-background: #242424;
+  --kbd-border-color: #4a4a4a;
+  --pre-background: #242424;
+  --pre-border-color: #3a3a3a;
+  --pre-annotation-font-color: #b0b0b0;
+  --quote-background: #242424;
+  --quote-border-color: #4a4a4a;
+  --quote-font-color: #c0c0c0;
+  --quote-attribution-font-color: #a0a0a0;
+  --sidebar-background: #2a2a2a;
+  --table-border-color: #3a3a3a;
+  --table-stripe-background: #242424;
+  --table-footer-background: linear-gradient(to bottom, #2a2a2a 0%, #1a1a1a 100%);
+
+  /* toc */
+  --toc-font-color: #a0a0a0;
+  --toc-heading-font-color: #e0e0e0;
+  --toc-border-color: #3a3a3a;
+
+  /* footer */
+  --footer-background: #1f1f1f;
+  --footer-font-color: #c0c0c0;
+  --footer-link-font-color: #e8e8e8;
+}
