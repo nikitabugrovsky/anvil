@@ -27,6 +27,9 @@
             <a class="navbar-item" href="{{ .URL }}" title="{{ .Title | markdownify }}">{{ .Name }}</a>
           {{ end }}
         {{ end }}
+        <button class="search-toggle navbar-item" onclick="openSearch()" aria-label="Search documentation" title="Search (Ctrl+K)">
+          <img class="search-icon" src="{{ "img/search.svg" | relURL }}" alt="Search">
+        </button>
         <button class="theme-toggle navbar-item" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle theme">
           <img class="theme-icon theme-icon-sun" src="{{ "img/sun.svg" | relURL }}" alt="Light mode">
           <img class="theme-icon theme-icon-moon" src="{{ "img/moon.svg" | relURL }}" alt="Dark mode">
@@ -35,3 +38,20 @@
     </div>
   </nav>
 </header>
+<div id="search-modal" class="search-modal">
+  <div class="search-container">
+    <div class="search-header">
+      <img class="search-icon" src="{{ "img/search.svg" | relURL }}" alt="Search">
+      <input 
+        type="text" 
+        id="search-input" 
+        class="search-input" 
+        placeholder="Search documentation..." 
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <button class="search-close" onclick="closeSearch()" aria-label="Close search">×</button>
+    </div>
+    <div id="search-results" class="search-results"></div>
+  </div>
+</div>
