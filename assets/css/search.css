@@ -152,16 +152,16 @@
 }
 
 .search-result-preview mark {
-  background: var(--link-font-color);
-  color: var(--doc-background);
+  background: #ffeb3b;
+  color: #000;
   padding: 0 0.125rem;
   border-radius: 0.125rem;
   font-weight: 500;
 }
 
 mark.search-highlight {
-  background: var(--link-font-color);
-  color: var(--doc-background);
+  background: #ffeb3b;
+  color: #000;
   padding: 0.125rem 0.25rem;
   border-radius: 0.125rem;
   font-weight: 500;
@@ -248,7 +248,7 @@ mark.search-highlight {
 }
 
 [data-theme="dark"] .search-modal {
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="dark"] .search-icon {

@@ -3,6 +3,11 @@ languageCode: en-US
 title: Forge CI Documentation
 theme: anvil
 
+outputs:
+  home:
+    - HTML
+    - JSON
+
 markup:
   goldmark:
     renderer:

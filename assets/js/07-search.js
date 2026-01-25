@@ -33,6 +33,15 @@ function openSearch() {
   if (!searchModal) return;
 
   searchModal.classList.add('is-active');
+
+  clearPageHighlights();
+  searchInput.value = '';
+  searchResults.innerHTML = '';
+
+  if (window.location.hash.startsWith('#search=')) {
+    history.replaceState(null, '', window.location.pathname);
+  }
+
   searchInput.focus();
   document.body.style.overflow = 'hidden';
 
@@ -82,7 +91,7 @@ function displayResults(results, query) {
 
   searchResults.innerHTML = results.map((result, idx) => {
     let preview = result.content || result.summary || '';
-    preview = truncatePreview(preview, 80);
+    preview = getMatchContext(preview, query, 80);
 
     preview = highlightMatches(preview, query);
 
@@ -93,7 +102,7 @@ function displayResults(results, query) {
     const urlWithHash = result.permalink + '#search=' + encodeURIComponent(query);
 
     return `
-      <a href="${escapeHtml(urlWithHash)}" class="search-result-item" data-index="${idx}">
+      <a href="${urlWithHash}" class="search-result-item" data-index="${idx}">
         <div class="search-result-header">
           <div class="search-result-title">${escapeHtml(result.title)}</div>
           <div class="search-result-section">${section}</div>
@@ -104,7 +113,7 @@ function displayResults(results, query) {
   }).join('');
 }
 
-function truncatePreview(text, maxLength) {
+function truncateFromStart(text, maxLength) {
   if (text.length <= maxLength) return text;
 
   const truncated = text.substring(0, maxLength);
@@ -152,6 +161,102 @@ function escapeRegex(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+function findWordBoundary(text, position, searchBackward, maxDistance = 20) {
+  if (searchBackward) {
+    // Search backward for word boundary
+    for (let i = 0; i < maxDistance && position - i >= 0; i++) {
+      const char = text[position - i];
+      if (/[\s.,;:!?\-\n]/.test(char)) {
+        return position - i + 1; // Return position after the boundary
+      }
+    }
+    return Math.max(0, position - maxDistance);
+  } else {
+    // Search forward for word boundary
+    for (let i = 0; i < maxDistance && position + i < text.length; i++) {
+      const char = text[position + i];
+      if (/[\s.,;:!?\-\n]/.test(char)) {
+        return position + i; // Return position at the boundary
+      }
+    }
+    return Math.min(text.length, position + maxDistance);
+  }
+}
+
+function getMatchContext(text, query, maxLength = 80) {
+  if (!text) return '';
+  if (text.length <= maxLength) return text;
+
+  // Normalize query for searching
+  const queryTrimmed = query.trim().replace(/\s+/g, ' ');
+  if (!queryTrimmed) {
+    return truncateFromStart(text, maxLength);
+  }
+
+  // Try to find exact phrase first
+  const searchRegex = new RegExp(escapeRegex(queryTrimmed), 'i');
+  const match = text.match(searchRegex);
+
+  // If no match, try first word only
+  let matchIndex = -1;
+  let matchLength = 0;
+
+  if (match) {
+    matchIndex = match.index;
+    matchLength = match[0].length;
+  } else {
+    // Try first word of query
+    const firstWord = queryTrimmed.split(' ')[0];
+    const firstWordRegex = new RegExp(escapeRegex(firstWord), 'i');
+    const firstWordMatch = text.match(firstWordRegex);
+
+    if (firstWordMatch) {
+      matchIndex = firstWordMatch.index;
+      matchLength = firstWordMatch[0].length;
+    }
+  }
+
+  // If still no match found, fall back to truncating from start
+  if (matchIndex === -1) {
+    return truncateFromStart(text, maxLength);
+  }
+
+  // Calculate context window around the match
+  const halfLength = Math.floor((maxLength - matchLength) / 2);
+
+  // Calculate ideal start and end positions
+  let contextStart = Math.max(0, matchIndex - halfLength);
+  let contextEnd = Math.min(text.length, matchIndex + matchLength + halfLength);
+
+  // Adjust if we're near the start or end
+  if (contextStart === 0) {
+    // Near start - extend the end
+    contextEnd = Math.min(text.length, maxLength);
+  } else if (contextEnd === text.length) {
+    // Near end - extend the start
+    contextStart = Math.max(0, text.length - maxLength);
+  }
+
+  // Adjust to word boundaries (unless we're at text edges)
+  if (contextStart > 0) {
+    contextStart = findWordBoundary(text, contextStart, true);
+  }
+  if (contextEnd < text.length) {
+    contextEnd = findWordBoundary(text, contextEnd, false);
+  }
+
+  let context = text.substring(contextStart, contextEnd);
+
+  if (contextStart > 0) {
+    context = '...' + context;
+  }
+  if (contextEnd < text.length) {
+    context = context + '...';
+  }
+
+  return context;
+}
+
 document.addEventListener('keydown', (e) => {
   // Ctrl+K or Cmd+K to open
   if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -174,8 +279,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Click outside to close
   searchModal.addEventListener('click', (e) => {
+    // Only close if clicking the modal backdrop itself, not its children
+    // Don't interfere with links inside search results
     if (e.target === searchModal) {
       closeSearch();
+    }
+  });
+  
+  // Handle clicks on search result links
+  searchResults.addEventListener('click', (e) => {
+    const link = e.target.closest('a.search-result-item');
+    if (link) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const targetUrl = link.getAttribute('href');
+      const targetPage = targetUrl.split('#')[0];
+
+      // Check if we're navigating to the same page (just different hash)
+      if (window.location.pathname === targetPage.replace(window.location.origin, '')) {
+        // Same page - close modal and update hash manually
+        closeSearch();
+        window.location.hash = targetUrl.split('#')[1] || '';
+        // Manually trigger highlight since we're not reloading
+        setTimeout(() => {
+          highlightSearchTermsOnPage();
+        }, 100);
+      } else {
+        window.location.href = targetUrl;
+      }
     }
   });
 

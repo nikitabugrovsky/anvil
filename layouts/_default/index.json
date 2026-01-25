@@ -1,0 +1,5 @@
+{{- $index := slice -}}
+{{- range $idx, $page := where .Site.RegularPages "Type" "not in" (slice "page") -}}
+  {{- $index = $index | append (dict "id" $idx "title" .Title "permalink" .Permalink "content" .Plain "summary" .Summary "section" .Section "tags" .Params.tags) -}}
+{{- end -}}
+{{- $index | jsonify -}}
