@@ -10,7 +10,7 @@
 - id: in
   translation: "in"
 - id: lastModified
-  translation: "(Last modified on {{ . }})"
+  translation: "Last modified on {{ . }}"
 - id: postedOnDate
   translation: "Posted on {{ . }}"
 - id: taggedWith
