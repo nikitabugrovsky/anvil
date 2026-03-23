@@ -9,33 +9,48 @@
  * ==============================
  */
 
-/* Table header background */
-.doc table.tableblock thead th {
-  background-color: var(--panel-background);
-  font-weight: 600;
-}
-
-/* Full borders on all cells */
-.doc table.tableblock {
+/* Styles for ALL tables in markdown content (not just .tableblock) */
+.doc table {
   border-collapse: collapse;
-}
-
-.doc table.tableblock th,
-.doc table.tableblock td {
+  width: 100%;
+  margin: 1.5rem 0;
   border: 1px solid var(--table-border-color);
 }
 
-/* Adjust cell padding - increase from default 0.5rem */
-.doc table.tableblock th,
-.doc table.tableblock td {
-  padding: 0.75rem 1rem; /* vertical | horizontal */
+/* All table cells get borders */
+.doc table th,
+.doc table td {
+  border: 1px solid var(--table-border-color);
+  padding: 0.75rem 1rem;
+  text-align: left;
 }
 
-/* Adjust table margins for better spacing */
+/* Table header styling */
+.doc table thead th {
+  background-color: var(--panel-background);
+  font-weight: 600;
+  color: var(--heading-font-color);
+}
+
+/* Alternating row colors for better readability */
+.doc table tbody tr:nth-child(even) {
+  background-color: var(--table-even-row-background, rgba(0, 0, 0, 0.02));
+}
+
+.doc table tbody tr:hover {
+  background-color: var(--table-hover-background, rgba(0, 0, 0, 0.04));
+}
+
+/* Additional spacing after tables */
+.doc table + * {
+  margin-top: 1.5rem;
+}
+
+/* Override for .tableblock class if present */
 .doc table.tableblock {
-  margin: 2rem 0 0; /* Increased from 1.5rem */
+  margin: 2rem 0 0;
 }
 
 .doc table.tableblock + * {
-  margin-top: 2rem; /* Increased from 1.5rem */
+  margin-top: 2rem;
 }
