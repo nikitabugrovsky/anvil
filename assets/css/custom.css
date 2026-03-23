@@ -3,3 +3,39 @@
  * ==============================
  */
 /* You can override the variables in vars.css to customize the style. */
+
+/* ==============================
+ * Table Customizations
+ * ==============================
+ */
+
+/* Table header background */
+.doc table.tableblock thead th {
+  background-color: var(--panel-background);
+  font-weight: 600;
+}
+
+/* Full borders on all cells */
+.doc table.tableblock {
+  border-collapse: collapse;
+}
+
+.doc table.tableblock th,
+.doc table.tableblock td {
+  border: 1px solid var(--table-border-color);
+}
+
+/* Adjust cell padding - increase from default 0.5rem */
+.doc table.tableblock th,
+.doc table.tableblock td {
+  padding: 0.75rem 1rem; /* vertical | horizontal */
+}
+
+/* Adjust table margins for better spacing */
+.doc table.tableblock {
+  margin: 2rem 0 0; /* Increased from 1.5rem */
+}
+
+.doc table.tableblock + * {
+  margin-top: 2rem; /* Increased from 1.5rem */
+}
