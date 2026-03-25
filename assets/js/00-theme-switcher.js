@@ -21,6 +21,8 @@
 
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme)
+    // Dispatch event for Mermaid and other components to react to theme changes
+    window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: theme } }))
   }
 
   function setTheme(theme) {

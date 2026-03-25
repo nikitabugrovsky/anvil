@@ -54,3 +54,31 @@
 .doc table.tableblock + * {
   margin-top: 2rem;
 }
+
+/* ==============================
+ * Mermaid Diagram Styles
+ * ==============================
+ */
+
+/* Mermaid diagram container */
+.doc .mermaid {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--panel-background);
+  border: 1px solid var(--panel-border-color);
+  border-radius: 0.5rem;
+  text-align: center;
+  overflow-x: auto;
+}
+
+/* Ensure SVG diagrams are responsive */
+.doc .mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Dark theme specific adjustments */
+[data-theme="dark"] .mermaid {
+  background: var(--panel-background);
+  border-color: var(--panel-border-color);
+}
